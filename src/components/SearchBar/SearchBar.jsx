@@ -36,7 +36,7 @@ const SearchBar = () => {
   }, []);
 
   return (
-    <div className="w-96 flex items-center gap-2 relative" ref={ref}>
+    <div className="w-full md:w-96 h-10  flex items-center gap-2 relative px-4 md:px-0" ref={ref}>
       <CiSearch className="text-3xl" />
 
       <Input

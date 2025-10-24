@@ -11,7 +11,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-full min-h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-4">
+    <aside className="w-full h-full border shadow-lg rounded-2xl p-4">
       <nav className="space-y-2">
         {/* Static link */}
         <Button variant="ghost" className="w-full justify-start">
