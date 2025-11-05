@@ -41,13 +41,7 @@ const Navbar = () => {
           <div className="login-signin-area w-100 h-full  flex justify-center items-center gap-10 md:gap-8">
             <Button
               variant="outline"
-              className="px-10 border-none rounded-2xl hidden md:block"
-            >
-              Login
-            </Button>
-            <Button
-              variant="outline"
-              className="px-10 border-none rounded-2xl hidden md:block"
+              className="px-10 border-none rounded-2xl hidden md:block font-semibold"
             >
               Sign in
             </Button>

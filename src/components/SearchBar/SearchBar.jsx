@@ -36,13 +36,13 @@ const SearchBar = () => {
   }, []);
 
   return (
-    <div className="w-full md:w-96 h-10  flex items-center gap-2 relative px-4 md:px-0" ref={ref}>
+    <div className="w-full md:w-173 h-12  flex items-center gap-2 relative px-4 md:px-0" ref={ref}>
       <CiSearch className="text-3xl" />
 
       <Input
         className="h-full w-full rounded-xl border border-gray-300 focus-visible:ring-2 focus-visible:ring-orange-500 text-2xl placeholder:text-[18px]"
         type="text"
-        placeholder="Seacrh restuarants..."
+        placeholder="Seacrh..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
