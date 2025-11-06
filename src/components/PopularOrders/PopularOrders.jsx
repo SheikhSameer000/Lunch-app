@@ -1,5 +1,5 @@
 import React from "react";
-import restaurants from "../../utils/data";
+import {restaurants} from "../../utils/data";
 import { toast, ToastContainer } from "react-toastify";
 
 const PopularOrders = () => {

@@ -1,14 +1,16 @@
-import restaurants from "@/utils/data";
+import {restaurants} from "@/utils/data";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { AnimatePresence, motion } from "framer-motion";
 import { CiSearch } from "react-icons/ci";
+import { Link, useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [open, setOpen] = useState(false);
   const ref = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (query.trim() === "") {
@@ -45,6 +47,14 @@ const SearchBar = () => {
         placeholder="Seacrh..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            const firstMatch = filtered[0];
+            if (firstMatch) {
+              navigate(`/restaurants/${firstMatch.id}`);
+            }
+          }
+        }}
       />
       <AnimatePresence>
         {open && (
@@ -56,6 +66,7 @@ const SearchBar = () => {
             className="absolute z-50 top-full left-0 w-full mt-2 bg-white rounded-xl shadow-lg border border-gray-200"
           >
             {filtered.map((r, index) => (
+              <Link key={r.id} to={`/restaurants/${r.id}`}>
               <li
                 key={index}
                 className="flex gap-5 items-center my-5 px-2"
@@ -69,12 +80,14 @@ const SearchBar = () => {
                   alt={r.name}
                   className="w-10 h-10 rounded-md object-cover"
                 />
-                <div className="flex gap-3">
+                <div className="flex gap-3 cursor-pointer">
                   <p className="font-medium text-gray-800">{r.name}</p>
+                  <p className="font-medium text-sm text-gray-800">{r.title}</p>
                   <p className="text-sm text-gray-600">{r.timing.open}</p>
                   <p className="text-sm text-gray-600">{r.timing.close}</p>
                 </div>
               </li>
+              </Link>
             ))}
           </motion.ul>
         )}

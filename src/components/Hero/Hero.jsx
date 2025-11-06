@@ -1,6 +1,6 @@
 import React from "react";
 import "./Hero.css";
-import restaurants from "../../utils/data";
+import {restaurants} from "../../utils/data";
 import SearchBar from "../SearchBar/SearchBar";
 import OrderHistory from "../OrderHistory/OrderHistory";
 import { toast, ToastContainer } from "react-toastify";
@@ -8,7 +8,6 @@ import PopularOrders from "../PopularOrders/PopularOrders";
 import AllRestaurants from "../AllRestaurants/AllRestaurants";
 
 const Hero = () => {
-
   return (
     <>
       <ToastContainer
@@ -36,7 +35,7 @@ const Hero = () => {
         </section>
         <OrderHistory history={restaurants.slice(-7)} />
       </div>
-      <PopularOrders/>
+      <PopularOrders />
       <AllRestaurants />
     </>
   );
