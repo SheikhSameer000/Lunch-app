@@ -1,11 +1,13 @@
+import DishesNav from "@/components/DishesNav/DishesNav";
 import { Rating, RatingButton } from "@/components/ui/shadcn-io/rating";
-import { restaurants, restaurantDishes } from "@/utils/data";
+import { restaurants, allRestaurantDishes } from "@/utils/data";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 const RestaurantsDetails = () => {
   const [restaurant, setRestaurant] = useState();
+  const [categoryFilter, setCategoryFilter] = useState();
   const { id } = useParams();
   const [rating1, setRating1] = useState(0);
   const [rating2, setRating2] = useState(3);
@@ -15,14 +17,23 @@ const RestaurantsDetails = () => {
   useEffect(() => {
     const restaurantDetail = restaurants.find((res) => res.id === parseInt(id));
 
-    console.log(id);
+    // console.log(id);
 
     setRestaurant(restaurantDetail);
   }, [id]);
 
-  const dish = restaurantDishes.find(
+  const restaurantDishes = allRestaurantDishes.find(
     (res) => res.restaurantId === parseInt(id)
   );
+
+  const categories = Array.from(new Set(restaurantDishes.dishes.map((dish) => dish.category)));
+
+  const displayedDishes = categoryFilter
+    ? restaurantDishes.dishes.filter(
+        (dish) => dish.category === categoryFilter
+      )
+    : restaurantDishes.dishes;
+
   return (
     <section>
       <ToastContainer
@@ -37,9 +48,11 @@ const RestaurantsDetails = () => {
         pauseOnHover
         theme="light"
       />
-      <div className="h-auto w-full  flex justify-center items-center flex-col gap-4 my-10 px-30">
-        <h1 className="text-[2vw]">{restaurant?.name}</h1>
-        <h1 className="text-[1vw]">{restaurant?.title}</h1>
+      <div className="h-auto w-full  flex justify-center items-center flex-col gap-4 my-10 md:px-30">
+        <h1 className="text-5xl md:text-[2vw]">{restaurant?.name}</h1>
+        <h1 className="text-1xl text-center w-full md:text-[1vw]">
+          {restaurant?.title}
+        </h1>
 
         <div className="flex flex-col items-center gap-2">
           <Rating value={rating2} onValueChange={setRating2}>
@@ -51,39 +64,47 @@ const RestaurantsDetails = () => {
             <p className="text-xs text-muted-foreground">Rating: {rating2}</p>
           </div>
         </div>
-        <div className="text-[2vw] text-start mt-10 mb-4 w-full">
-          <h1>DISHES</h1>
+        <div className=" text-start mt-10 mb-4 w-full flex items-center justify-between">
+          <h1 className="text-4xl md:text-[2vw] text-center md:text-start">
+            Dishes
+          </h1>
+          <DishesNav setCategoryFilter={setCategoryFilter} categories={categories} restaurant={restaurant} ParamId={id}/>
         </div>
-        <div className="w-full h-auto border rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
-          {dish?.dishes?.map((d) => (
+        <div className="w-full h-auto border rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:bg-white bg-gray-50">
+          {displayedDishes?.map((d) => (
             <div
               key={d.id}
-              className="w-full h-full flex justify-between items-center px-10 py-4 border-b hover:bg-gray-50 hover:cursor-pointer hover:transition-all hover:scale-102 last:border-b-0 "
+              className="w-full h-full gap-5 flex-col md:flex-row flex justify-between items-center px-10 py-4 border-b rounded-t-2xl rounded-b-2xl  bg-gray-100 md:bg-white  md:hover:bg-gray-100 hover:cursor-pointer hover:transition-all hover:scale-102 last:border-b-0 "
             >
-              <div className="flex justify-center items-center gap-5">
-                {" "}
+              <div className="flex flex-col md:flex-row justify-center items-center gap-5">
                 <img
                   src={d.image}
-                  alt=""
-                  className="w-30 h-25 object-cover rounded-2xl"
+                  alt={d.name}
+                  className="md:w-30 md:h-25  object-cover rounded-2xl"
                 />
-                <div>
-                  <h1 className="text-[1.5vw]">{d?.name}</h1>
-                  <p>{d?.title}</p>
+                <div className="gap-5">
+                  <h1 className="text-lg text-center md:text-[1.5vw] ">
+                    {d?.name}
+                  </h1>
+                  <p className="text-center md:text-start text-sm">
+                    {d?.title}
+                  </p>
                 </div>
               </div>
-              <div>
-                <h1 className="text-[1.5vw]">Rs. {d?.price}</h1>
+              <div className="">
+                <h1 className="text-1xl text-center md:text-[1.5vw] ">
+                  Rs. {d?.price}
+                </h1>
                 <button
-                  className=" flex  top-100  right-0 items-center justify-center w-32 h-8 bg-orange-500 group text-white text-sm rounded-full hover:bg-[#f58220] transition-all cursor-pointer"
+                  className=" flex   top-100  right-0 items-center justify-center w-32 h-8 bg-orange-500 group text-white text-sm rounded-full hover:bg-[#f58220] transition-all cursor-pointer"
                   onClick={() => {
                     notify();
                   }}
                 >
-                  <span className="">Add to Cart</span>
+                  <span>Add to Cart</span>
                 </button>
               </div>
-              {console.log(d)}
+              {/* {console.log(d)} */}
             </div>
           ))}
         </div>

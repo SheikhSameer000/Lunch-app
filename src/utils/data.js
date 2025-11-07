@@ -85,7 +85,7 @@ export const restaurants = [
   },
 ];
 
-export const restaurantDishes = [
+export const allRestaurantDishes = [
   {
     restaurantId: 1, // Kolachi
     dishes: [
@@ -94,45 +94,60 @@ export const restaurantDishes = [
         name: "Signature Chicken White Karahi",
         title: "Creamy Yogurt-Based Chicken Karahi",
         description:
-          "Tender chicken cooked in a mild white gravy made with yogurt, butter, garlic, and selected spices for a smooth, rich flavor.",
+          "Tender chicken cooked in a mild white gravy made with yogurt, butter, garlic, and selected spices.",
         price: 1850,
         image: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+        category: "karahi",
       },
       {
         id: 2,
         name: "Kolachi Special Malai Boti",
         title: "Soft & Creamy Charcoal Grilled Bites",
         description:
-          "Boneless chicken marinated in a creamy blend of yogurt and mild spices, grilled over charcoal to perfection.",
+          "Boneless chicken marinated in a creamy blend of yogurt and mild spices, grilled over charcoal.",
         price: 1150,
         image: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+        category: "bbq",
       },
       {
         id: 3,
         name: "Beef Seekh Kabab",
         title: "Smoky Charcoal Grilled Seekh Kababs",
         description:
-          "Juicy ground beef kababs seasoned with spices and grilled for a smoky, authentic BBQ flavor.",
+          "Juicy minced beef kababs grilled for a smoky, authentic BBQ flavor.",
         price: 950,
         image: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+        category: "bbq",
       },
       {
         id: 4,
         name: "Kolachi Chicken Handi",
         title: "Traditional Pakistani Handi",
         description:
-          "Creamy tomato-based chicken handi cooked in a clay pot for authentic texture and flavor.",
+          "Creamy tomato-based chicken handi cooked in a clay pot for authentic flavor.",
         price: 1780,
         image: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+        category: "handi",
       },
       {
         id: 5,
         name: "Beef Bihari Boti",
         title: "Tender Marinated Beef Strips",
         description:
-          "Thin-cut beef strips marinated in bihari spice mix, slow grilled for soft and smoky taste.",
+          "Thin-cut beef strips marinated in bihari spices and grilled for a soft smoky taste.",
         price: 1100,
         image: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+        category: "bbq",
+      },
+      {
+        id: 6,
+        name: "Naan / Paratha",
+        title: "Oven & Tandoor Breads",
+        description:
+          "Fresh baked naan, roghni naan, and crisp tandoori paratha.",
+        price: 60,
+        image: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+        category: "bread",
       },
     ],
   },
@@ -147,6 +162,7 @@ export const restaurantDishes = [
         description:
           "Breaded chicken breast topped with marinara sauce and melted parmesan cheese, served with pasta or sautéed veggies.",
         price: 1950,
+        
       },
       {
         id: 2,
@@ -310,8 +326,7 @@ export const restaurantDishes = [
         id: 3,
         name: "1 Kg Family Pack",
         title: "Large Family Biryani Portion",
-        description:
-          "1kg biryani with rich flavor and bone marrow chunks.",
+        description: "1kg biryani with rich flavor and bone marrow chunks.",
         price: 1600,
       },
     ],
@@ -340,8 +355,7 @@ export const restaurantDishes = [
         id: 3,
         name: "Beef Kabab with Rice",
         title: "Grilled Kababs with aromatic rice",
-        description:
-          "Charcoal-grilled beef kababs served with Lebanese rice.",
+        description: "Charcoal-grilled beef kababs served with Lebanese rice.",
         price: 1850,
       },
     ],
@@ -354,24 +368,21 @@ export const restaurantDishes = [
         id: 1,
         name: "Dynamite Chicken",
         title: "Crispy Chicken in Chili Sauce",
-        description:
-          "Lightly fried chicken tossed in tangy-spicy sauce.",
+        description: "Lightly fried chicken tossed in tangy-spicy sauce.",
         price: 950,
       },
       {
         id: 2,
         name: "Chicken Chowmein",
         title: "Chinese Stir-Fried Noodles",
-        description:
-          "Noodles stir-fried with chicken and vegetables.",
+        description: "Noodles stir-fried with chicken and vegetables.",
         price: 850,
       },
       {
         id: 3,
         name: "Szechuan Chicken Gravy",
         title: "Spicy Szechuan Style Gravy",
-        description:
-          "Szechuan-style spicy chicken served with gravy.",
+        description: "Szechuan-style spicy chicken served with gravy.",
         price: 1050,
       },
     ],
@@ -392,16 +403,14 @@ export const restaurantDishes = [
         id: 2,
         name: "Mutton Chops BBQ",
         title: "Grilled Mutton Chops",
-        description:
-          "Tender mutton chops marinated with spices and grilled.",
+        description: "Tender mutton chops marinated with spices and grilled.",
         price: 2200,
       },
       {
         id: 3,
         name: "Chicken Tikka Chest",
         title: "Smoky BBQ Tikka",
-        description:
-          "Chicken chest piece marinated in BBQ spices and grilled.",
+        description: "Chicken chest piece marinated in BBQ spices and grilled.",
         price: 480,
       },
     ],
@@ -422,8 +431,7 @@ export const restaurantDishes = [
         id: 2,
         name: "Thai Basil Chicken Bowl",
         title: "Asian Rice Bowl",
-        description:
-          "Stir-fried chicken with basil served over jasmine rice.",
+        description: "Stir-fried chicken with basil served over jasmine rice.",
         price: 1450,
       },
       {
@@ -444,28 +452,23 @@ export const restaurantDishes = [
         id: 1,
         name: "Zouk Special Steak",
         title: "Signature Tender Steak",
-        description:
-          "Premium beef steak cooked to your choice with sides.",
+        description: "Premium beef steak cooked to your choice with sides.",
         price: 2400,
       },
       {
         id: 2,
         name: "Creamy Tarragon Chicken",
         title: "Creamy Herb Chicken",
-        description:
-          "Chicken breast cooked in creamy tarragon sauce.",
+        description: "Chicken breast cooked in creamy tarragon sauce.",
         price: 1850,
       },
       {
         id: 3,
         name: "Peri Peri Grilled Sandwich",
         title: "Grilled Spicy Chicken Sandwich",
-        description:
-          "Grilled chicken sandwich flavored with peri peri sauce.",
+        description: "Grilled chicken sandwich flavored with peri peri sauce.",
         price: 960,
       },
     ],
   },
 ];
-
-
