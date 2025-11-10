@@ -26,12 +26,12 @@ const RestaurantsDetails = () => {
     (res) => res.restaurantId === parseInt(id)
   );
 
-  const categories = Array.from(new Set(restaurantDishes.dishes.map((dish) => dish.category)));
+  const categories = Array.from(
+    new Set(restaurantDishes.dishes.map((dish) => dish.category))
+  );
 
   const displayedDishes = categoryFilter
-    ? restaurantDishes.dishes.filter(
-        (dish) => dish.category === categoryFilter
-      )
+    ? restaurantDishes.dishes.filter((dish) => dish.category === categoryFilter)
     : restaurantDishes.dishes;
 
   return (
@@ -64,11 +64,14 @@ const RestaurantsDetails = () => {
             <p className="text-xs text-muted-foreground">Rating: {rating2}</p>
           </div>
         </div>
+        <h1 className="text-4xl md:text-[2vw] mt-10 w-full text-center md:text-start">
+          Dishes
+        </h1>
         <div className=" text-start mt-10 mb-4 w-full flex items-center justify-between">
-          <h1 className="text-4xl md:text-[2vw] text-center md:text-start">
-            Dishes
-          </h1>
-          <DishesNav setCategoryFilter={setCategoryFilter} categories={categories} restaurant={restaurant} ParamId={id}/>
+          <DishesNav
+            setCategoryFilter={setCategoryFilter}
+            categories={categories}
+          />
         </div>
         <div className="w-full h-auto border rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:bg-white bg-gray-50">
           {displayedDishes?.map((d) => (

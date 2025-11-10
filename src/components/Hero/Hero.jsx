@@ -6,6 +6,7 @@ import OrderHistory from "../OrderHistory/OrderHistory";
 import { toast, ToastContainer } from "react-toastify";
 import PopularOrders from "../PopularOrders/PopularOrders";
 import AllRestaurants from "../AllRestaurants/AllRestaurants";
+import Form from "../FastTrack-form/Form";
 
 const Hero = () => {
   return (
@@ -32,6 +33,7 @@ const Hero = () => {
             Your one-stop destination for delicious meals!
           </p>
           <SearchBar />
+          <Form/>
         </section>
         <OrderHistory history={restaurants.slice(-7)} />
       </div>

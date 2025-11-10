@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 
 const DishesNav = ({ categories, setCategoryFilter }) => {
   return (
-    <div className="w-full h-10 ">
-      <ul className="">
-        {/* {console.log(dish.dishes[0].category)} */}
+    <div className="w-full py-4 px-2 bg-white rounded-xl shadow-md mb-6 overflow-x-auto">
+      <ul className="flex gap-3 min-w-max">
+        {/* "All" Button */}
         <li>
-          <button onClick={() => setCategoryFilter()} className="mx-3 px-7 py-3 rounded-full border border-gray-300 hover:bg-gray-200 transition-all justify-end">
+          <button
+            onClick={() => setCategoryFilter(null)}
+            className="px-8 py-2 rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 transition-all whitespace-nowrap text-md md:text-base"
+          >
             All
           </button>
-          {categories.map((category, index) => (
+        </li>
+
+        {/* Category Buttons */}
+        {categories.map((category, index) => (
+          <li key={index}>
             <button
-              key={index}
-              className="mx-3 px-7 py-3 rounded-full border border-gray-300 hover:bg-gray-200 transition-all"
               onClick={() => setCategoryFilter(category)}
+              className="px-8 py-2 rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 transition-all whitespace-nowrap text-md md:text-base"
             >
               {category}
             </button>
-          ))}
-        </li>
+          </li>
+        ))}
       </ul>
     </div>
   );
