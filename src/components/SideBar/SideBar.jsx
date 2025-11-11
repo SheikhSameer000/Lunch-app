@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [openMenu, setOpenMenu] = useState(null);
@@ -14,9 +15,11 @@ const Sidebar = () => {
     <aside className="w-full h-full border shadow-lg rounded-2xl p-4">
       <nav className="space-y-2">
         {/* Static link */}
-        <Button variant="ghost" className="w-full justify-start">
-          Dashboard
-        </Button>
+        <Link to="/">
+          <Button variant="ghost" className="w-full justify-start">
+            Dashboard
+          </Button>
+        </Link>
 
         {/* Dropdown 1 */}
         <div>
@@ -42,13 +45,22 @@ const Sidebar = () => {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="overflow-hidden pl-5 space-y-1 mt-2"
               >
-                <Button variant="ghost" className="w-full justify-start text-sm">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-sm"
+                >
                   Add Restaurant
                 </Button>
-                <Button variant="ghost" className="w-full justify-start text-sm">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-sm"
+                >
                   Manage Restaurants
                 </Button>
-                <Button variant="ghost" className="w-full justify-start text-sm">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-sm"
+                >
                   Reviews
                 </Button>
               </motion.div>
@@ -80,10 +92,16 @@ const Sidebar = () => {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="overflow-hidden pl-5 space-y-1 mt-2"
               >
-                <Button variant="ghost" className="w-full justify-start text-sm">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-sm"
+                >
                   Pending Orders
                 </Button>
-                <Button variant="ghost" className="w-full justify-start text-sm">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-sm"
+                >
                   Completed Orders
                 </Button>
               </motion.div>

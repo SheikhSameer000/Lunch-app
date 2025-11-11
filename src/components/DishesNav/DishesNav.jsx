@@ -2,7 +2,7 @@ import React from "react";
 
 const DishesNav = ({ categories, setCategoryFilter }) => {
   return (
-    <div className="w-full py-4 px-2 bg-white rounded-xl shadow-md mb-6 overflow-x-auto">
+    <div className="w-full py-4 px-2 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:bg-white bg-gray-50 border overflow-x-auto">
       <ul className="flex gap-3 min-w-max">
         {/* "All" Button */}
         <li>

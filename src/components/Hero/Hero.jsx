@@ -27,7 +27,7 @@ const Hero = () => {
       <div className="main w-100% h-auto flex flex-col justify-center items-center gap-4 md:gap-8 mb-20">
         <section className="tag-line w-full h-full flex flex-col items-center space-y-2 md:space-y-2 px-4 md:px-0">
           <h1 className="text-3xl md:text-5xl font-bold mt-8 md:mt-12 text-center">
-            Welcome to <span className="text-orange-500">TechWards</span>
+            Welcome to <span className="text-orange-500">Techwards'</span> Lunch App
           </h1>
           <p className="text-md md:text-lg text-center mt-2 md:mt-4 mb-4">
             Your one-stop destination for delicious meals!

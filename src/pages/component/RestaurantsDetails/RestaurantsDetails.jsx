@@ -4,10 +4,15 @@ import { restaurants, allRestaurantDishes } from "@/utils/data";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { Modal } from "@/components/Modal/Modal";
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 
 const RestaurantsDetails = () => {
   const [restaurant, setRestaurant] = useState();
   const [categoryFilter, setCategoryFilter] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedDish, setSelectedDish] = useState(null);
+
   const { id } = useParams();
   const [rating1, setRating1] = useState(0);
   const [rating2, setRating2] = useState(3);
@@ -23,7 +28,7 @@ const RestaurantsDetails = () => {
   }, [id]);
 
   const restaurantDishes = allRestaurantDishes.find(
-    (res) => res.restaurantId === parseInt(id)
+    (dish) => dish.restaurantId === parseInt(id)
   );
 
   const categories = Array.from(
@@ -34,6 +39,10 @@ const RestaurantsDetails = () => {
     ? restaurantDishes.dishes.filter((dish) => dish.category === categoryFilter)
     : restaurantDishes.dishes;
 
+  const modalHandler = (dish) => {
+    setSelectedDish(dish);
+    setModalOpen(true);
+  };
   return (
     <section>
       <ToastContainer
@@ -49,6 +58,13 @@ const RestaurantsDetails = () => {
         theme="light"
       />
       <div className="h-auto w-full  flex justify-center items-center flex-col gap-4 my-10 md:px-30">
+        {modalOpen && (
+          <Modal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+            dish={selectedDish}
+          />
+        )}
         <h1 className="text-5xl md:text-[2vw]">{restaurant?.name}</h1>
         <h1 className="text-1xl text-center w-full md:text-[1vw]">
           {restaurant?.title}
@@ -76,6 +92,7 @@ const RestaurantsDetails = () => {
         <div className="w-full h-auto border rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.1)] md:bg-white bg-gray-50">
           {displayedDishes?.map((d) => (
             <div
+              onClick={() => modalHandler(d)}
               key={d.id}
               className="w-full h-full gap-5 flex-col md:flex-row flex justify-between items-center px-10 py-4 border-b rounded-t-2xl rounded-b-2xl  bg-gray-100 md:bg-white  md:hover:bg-gray-100 hover:cursor-pointer hover:transition-all hover:scale-102 last:border-b-0 "
             >
@@ -86,7 +103,7 @@ const RestaurantsDetails = () => {
                   className="md:w-30 md:h-25  object-cover rounded-2xl"
                 />
                 <div className="gap-5">
-                  <h1 className="text-lg text-center md:text-[1.5vw] ">
+                  <h1 className="text-lg text-center md:text-[1.5vw]">
                     {d?.name}
                   </h1>
                   <p className="text-center md:text-start text-sm">
